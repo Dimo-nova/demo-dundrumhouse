@@ -225,7 +225,7 @@ button { font-family: 'Mulish', sans-serif; }
 .back-chevron { font-size: 15px; line-height: 1; }
 
 .page-header {
-  padding: 28px 26px 26px;
+  padding: 28px 22px 26px;
   background: var(--green);
   color: oklch(0.95 0.02 90);
 }
@@ -465,7 +465,7 @@ button { font-family: 'Mulish', sans-serif; }
 
 /* ---- what's on ---- */
 
-.page-body { padding: 24px 26px; }
+.page-body { padding: 24px 22px; }
 
 .list-label {
   font-weight: 800;
@@ -542,7 +542,7 @@ button { font-family: 'Mulish', sans-serif; }
 }
 
 .visit-body {
-  padding: 24px 26px;
+  padding: 24px 22px;
   display: flex;
   flex-direction: column;
   gap: 18px;
