@@ -4,22 +4,22 @@ const categories = ['Starters', 'Main Course', 'Sides', 'Kids', 'Desserts', 'Coc
 
 const menu = {
   'Starters': [
-    { name: 'Homemade Soup of the Day', desc: 'Served with homemade soda bread · gluten-free bread available', price: '€4.50', tags: ['Veg', 'GF'], allergens: '1,3,7,9' },
+    { name: 'Homemade Soup of the Day', desc: 'Served with homemade soda bread', price: '€4.50', tags: ['Veg'], allergens: '1,3,7,9' },
     { name: 'Chicken Caesar Salad', desc: 'Chicken & bacon, cos lettuce, parmesan, croutons, homemade Caesar dressing · main portion €12.50', price: '€7.95', tags: [], allergens: '1,3,7,8,9,12' },
     { name: 'Crispy Chicken Wings', desc: 'Tossed in hot & spicy or house BBQ sauce, blue cheese dip · large €13.50', price: '€8.50', tags: [], allergens: '1,3,4,6,7,9,10' }
   ],
   'Main Course': [
     { name: 'Homemade Lasagne', desc: 'Garlic cream sauce & sun-dried tomatoes, garlic bread & fries', price: '€13.95', tags: [], allergens: '1,3,7,9,10,12' },
-    { name: 'Chicken & Mushroom Pasta', desc: 'White wine & garlic cream, spinach, egg yolk, parmesan, garlic bread · vegetarian option available', price: '€14.95', tags: ['Veg'], allergens: '1,3,7,9,12' },
+    { name: 'Chicken & Mushroom Pasta', desc: 'White wine & garlic cream, spinach, egg yolk, parmesan, garlic bread · vegetarian option available', price: '€14.95', tags: [], allergens: '1,3,7,9,12' },
     { name: 'Southern Fried Burger', desc: 'Buttermilk chicken in southern-fried spice, toasted brioche, cheese & bacon, fries', price: '€14.95', tags: [], allergens: '1,3,7,9,11,12' },
-    { name: 'Homemade Burger', desc: '8oz beef, cheese, lettuce, tomato, onion rings, brioche, fries & pepper sauce · gluten-free bun available', price: '€14.95', tags: ['GF'], allergens: '1,3,4,7,8,10' },
+    { name: 'Homemade Burger', desc: '8oz beef, cheese, lettuce, tomato, onion rings, brioche, fries & pepper sauce', price: '€14.95', tags: [], allergens: '1,3,4,7,8,10' },
     { name: '6oz Sirloin Steak Sandwich', desc: 'Cooked to your liking, sautéed mushrooms & onions, toasted ciabatta, fries & pepper sauce', price: '€15.95', tags: [], allergens: '1,3,7,9' },
     { name: 'Scampi', desc: 'Fresh tiger prawns in beer batter, lettuce, homemade garlic mayo, fries', price: '€15.95', tags: [], allergens: '1,2,10' }
   ],
   'Sides': [
     { name: 'Chips', desc: '', price: '€3.00', tags: ['Vegan', 'GF'], allergens: '' },
     { name: 'Garlic Bread', desc: '', price: '€3.00', tags: ['Veg'], allergens: '1,3,7' },
-    { name: 'Beer Batter Onion Rings', desc: '', price: '€3.00', tags: ['Veg'], allergens: '1' },
+    { name: 'Beer Batter Onion Rings', desc: '', price: '€3.00', tags: ['Vegan'], allergens: '1' },
     { name: 'Sautéed Mushrooms & Onions', desc: '', price: '€3.00', tags: ['Vegan', 'GF'], allergens: '' }
   ],
   'Kids': [
@@ -118,7 +118,8 @@ function filteredDishes() {
   let list = state.tab === 'All'
     ? categories.flatMap((c) => menu[c].map((d) => ({ ...d, category: c })))
     : (menu[state.tab] || []).slice();
-  if (state.diet !== 'All') list = list.filter((d) => (d.tags || []).includes(state.diet));
+  if (state.diet === 'Veg') list = list.filter((d) => d.tags.includes('Veg') || d.tags.includes('Vegan'));
+  else if (state.diet !== 'All') list = list.filter((d) => d.tags.includes(state.diet));
   if (q) list = list.filter((d) => (d.name + ' ' + d.desc).toLowerCase().includes(q));
   return list;
 }
