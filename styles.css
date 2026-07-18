@@ -31,7 +31,7 @@
 
 html, body { height: 100%; overflow: hidden; }
 
-html { background: oklch(0.83 0.025 65); }
+html { background: var(--cream-bar); }
 
 body {
   margin: 0;
