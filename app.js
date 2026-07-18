@@ -56,7 +56,9 @@ const music = [
 
 const dietOptions = ['All', 'Veg', 'Vegan', 'GF'];
 
-const state = { screen: 'home', tab: 'Starters', diet: 'All', query: '' };
+const tabList = ['All', ...categories];
+
+const state = { screen: 'home', tab: 'All', diet: 'All', query: '' };
 
 const $ = (id) => document.getElementById(id);
 
@@ -104,7 +106,7 @@ function renderDietRow() {
 function renderTabs() {
   const row = $('tab-row');
   row.replaceChildren();
-  for (const name of categories) {
+  for (const name of tabList) {
     const tab = el('button', 'tab-btn' + (name === state.tab ? ' active' : ''), name);
     tab.addEventListener('click', () => { state.tab = name; renderMenu(); });
     row.appendChild(tab);
@@ -113,7 +115,9 @@ function renderTabs() {
 
 function filteredDishes() {
   const q = state.query.trim().toLowerCase();
-  let list = (menu[state.tab] || []).slice();
+  let list = state.tab === 'All'
+    ? categories.flatMap((c) => menu[c].map((d) => ({ ...d, category: c })))
+    : (menu[state.tab] || []).slice();
   if (state.diet !== 'All') list = list.filter((d) => (d.tags || []).includes(state.diet));
   if (q) list = list.filter((d) => (d.name + ' ' + d.desc).toLowerCase().includes(q));
   return list;
@@ -124,9 +128,14 @@ function renderDishes() {
   container.replaceChildren();
   const list = filteredDishes();
   $('empty-state').hidden = list.length > 0;
-  $('section-title').textContent = state.tab;
+  $('section-title').textContent = state.tab === 'All' ? 'Full Menu' : state.tab;
 
+  let lastCategory = null;
   for (const dish of list) {
+    if (dish.category && dish.category !== lastCategory) {
+      lastCategory = dish.category;
+      container.appendChild(el('div', 'dish-group-label', dish.category));
+    }
     const card = el('div', 'dish');
     const row = el('div', 'dish-row');
     row.appendChild(el('span', 'dish-name', dish.name));
