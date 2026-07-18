@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dundrum House — Bar &amp; Lounge</title>
+<meta name="description" content="Dundrum House — traditional bar & lounge in the heart of Dundrum Village. Food menu, live music and sport.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Mulish:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app" id="app">
+
+  <!-- ===== HOME ===== -->
+  <div class="screen" id="screen-home" data-scroll>
+    <header class="hero">
+      <div class="hero-inner">
+        <div class="hero-crest">DH</div>
+        <div class="hero-eyebrow">Est. Dundrum Village</div>
+        <h1 class="hero-title">Dundrum<br>House</h1>
+        <div class="hero-rule"></div>
+        <p class="hero-copy">Traditional bar &amp; lounge in the heart of the village. Good food, proper pints, live music.</p>
+      </div>
+    </header>
+    <div class="home-actions">
+      <button class="btn-primary" data-nav="menu">View the Menu</button>
+      <button class="btn-secondary" data-nav="whatson">What's On Tonight</button>
+      <div class="home-facts">
+        <div class="fact-card">
+          <div class="fact-value">12–9pm</div>
+          <div class="fact-label">Food Daily</div>
+        </div>
+        <div class="fact-card">
+          <div class="fact-value">Thu–Sat</div>
+          <div class="fact-label">Live Music</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MENU ===== -->
+  <div class="screen screen-menu" id="screen-menu" hidden>
+    <div class="menu-header">
+      <button class="back-link" data-nav="home"><span class="back-chevron">‹</span> Home</button>
+      <div class="menu-header-row">
+        <span class="menu-title">The Menu</span>
+        <span class="menu-address">57 Main St</span>
+      </div>
+      <div class="search-box">
+        <span class="search-icon"><span></span></span>
+        <input id="search-input" type="search" placeholder="Search the menu…" autocomplete="off">
+        <button id="search-clear" class="search-clear" hidden aria-label="Clear search">×</button>
+      </div>
+      <div class="diet-row" id="diet-row" data-scroll></div>
+    </div>
+
+    <nav class="tab-row" id="tab-row" data-scroll></nav>
+
+    <div class="menu-body" data-scroll>
+      <div class="section-head">
+        <span class="section-title" id="section-title">Starters</span>
+        <span class="section-badge">12–9pm daily</span>
+      </div>
+      <div class="section-rule"></div>
+
+      <div id="dish-list"></div>
+
+      <div class="empty-state" id="empty-state" hidden>
+        <div class="empty-title">Nothing here just now</div>
+        <div class="empty-copy">Try another section or clear your filters.</div>
+      </div>
+
+      <div class="allergen-key">
+        <div class="allergen-key-title">Allergen Key</div>
+        <div class="allergen-key-body">1 Gluten · 2 Crustaceans · 3 Eggs · 4 Fish · 5 Peanuts · 6 Soybean · 7 Milk · 8 Nuts · 9 Celery · 10 Mustard · 11 Sesame · 12 Sulphites · 13 Lupin · 14 Molluscs</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== WHAT'S ON ===== -->
+  <div class="screen" id="screen-whatson" data-scroll hidden>
+    <div class="page-header">
+      <button class="back-link" data-nav="home"><span class="back-chevron">‹</span> Home</button>
+      <span class="page-title">What's On</span>
+      <p class="page-sub">Live sport on 8 screens &amp; music at the weekend.</p>
+    </div>
+    <div class="page-body">
+      <div class="list-label">Live Sport</div>
+      <div id="fixtures-list"></div>
+      <div class="list-label list-label-gap">Live Music</div>
+      <div id="music-list"></div>
+    </div>
+  </div>
+
+  <!-- ===== VISIT ===== -->
+  <div class="screen" id="screen-visit" data-scroll hidden>
+    <div class="page-header">
+      <button class="back-link" data-nav="home"><span class="back-chevron">‹</span> Home</button>
+      <span class="page-title">Visit Us</span>
+    </div>
+    <div class="map-placeholder"><span>[ map of Dundrum Village ]</span></div>
+    <div class="visit-body">
+      <div>
+        <div class="visit-label">Address</div>
+        <div class="visit-address">57 Main Street, Dundrum<br>Dublin 14 · D14 X0T8</div>
+      </div>
+      <div class="visit-hours">
+        <div>
+          <div class="visit-label">Kitchen</div>
+          <div class="visit-text">Mon–Sun<br>12:00 – 21:00</div>
+        </div>
+        <div>
+          <div class="visit-label">Bar</div>
+          <div class="visit-text">Mon–Thu 12–11:30pm<br>Fri–Sat 12pm–12:30am<br>Sun 12–11pm</div>
+        </div>
+      </div>
+      <div>
+        <div class="visit-label">Call Us</div>
+        <a class="visit-phone" href="tel:+35312961097">+353 1 296 1097</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== BOTTOM BAR ===== -->
+  <nav class="bottom-bar" id="bottom-bar" hidden>
+    <button data-nav="menu" id="nav-menu"><span class="icon icon-menu"></span>Menu</button>
+    <button data-nav="whatson" id="nav-whatson"><span class="icon icon-circle"></span>On Tonight</button>
+    <button data-nav="visit" id="nav-visit"><span class="icon icon-pin"></span>Visit</button>
+  </nav>
+
+</div>
+<script src="app.js"></script>
+</body>
+</html>
