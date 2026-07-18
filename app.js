@@ -127,6 +127,7 @@ function filteredDishes() {
 function renderDishes() {
   const container = $('dish-list');
   container.replaceChildren();
+  document.querySelector('.menu-body').scrollTop = 0;
   const list = filteredDishes();
   $('empty-state').hidden = list.length > 0;
   $('section-title').textContent = state.tab === 'All' ? 'Full Menu' : state.tab;
