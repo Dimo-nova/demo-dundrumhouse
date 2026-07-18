@@ -57,7 +57,7 @@ button { font-family: 'Mulish', sans-serif; }
 
 .app {
   position: relative;
-  max-width: 420px;
+  max-width: 440px;
   margin: 0 auto;
   height: 100dvh;
   display: flex;
